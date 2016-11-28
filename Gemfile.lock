@@ -1,8 +1,8 @@
 GIT
-  remote: git@github.com:neillturner/kitchen-verifier-serverspec.git
-  revision: 1dd2d1ff83e7a9596cf3e2bc08ec456d0edea4a3
+  remote: https://github.com/neillturner/kitchen-verifier-serverspec.git
+  revision: c8307cb61a5ae8c141ff89be6cdb021486f87806
   specs:
-    kitchen-verifier-serverspec (0.5.0)
+    kitchen-verifier-serverspec (0.6.2)
       net-ssh (~> 3)
       test-kitchen (~> 1.4)
 
@@ -87,4 +87,4 @@ DEPENDENCIES
   test-kitchen (= 1.8.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
