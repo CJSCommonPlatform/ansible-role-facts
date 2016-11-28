@@ -18,7 +18,7 @@
     mode: "u=rwx,go=rx"
   notify: reload ansible_local facts
   when: "{{ facts_template_directory is defined }}"
-  with_fileglob: "{{ facts_template_directory }}/*.j2"
+  with_fileglob: "{% if facts_template_directory is defined %}{{ facts_template_directory ~ '/*.j2' }}{% else %}{{ omit }}{% endif %}"
 
 - name: Ensure facts are reloaded
   meta: flush_handlers

@@ -19,10 +19,13 @@ platforms:
 
 suites:
   - name: default
-    provisioner:
-      additional_copy_path: test/integration/default/example_facts
     verifier:
       default_path: test/integration/default/serverspec
+  - name: with_facts
+    provisioner:
+      additional_copy_path: test/integration/with_facts/example_facts
+    verifier:
+      default_path: test/integration/with_facts/serverspec
 
 verifier:
   name: serverspec
