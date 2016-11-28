@@ -1,0 +1,31 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: ansible_playbook
+  requirements_path: requirements.yml
+  hosts: test-kitchen
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  ansible_verbosity: 2
+  ansible_verbose: true
+  ansible_diff: true
+  idempotency_test: true
+  role_name: mojcpp.facts
+
+platforms:
+  - name: centos-6.7
+
+suites:
+  - name: default
+    provisioner:
+      additional_copy_path: test/integration/default/example_facts
+    verifier:
+      default_path: test/integration/default/serverspec
+
+verifier:
+  name: serverspec
+  remote_exec: false
+  patterns:
+    - "'**/*_spec.rb'"

@@ -1,0 +1,25 @@
+---
+- name: Create facts directory
+  become: yes
+  file:
+    group: root
+    mode: "u=rwx,go=rx"
+    owner: root
+    path: "{{ facts_fact_path }}"
+    state: directory
+
+- name: Create facts scripts
+  become: yes
+  template:
+    src: "{{ item }}"
+    dest: "{{ facts_fact_path }}/{{ item | basename | replace('.j2', '') }}"
+    owner: root
+    group: root
+    mode: "u=rwx,go=rx"
+  notify: reload ansible_local facts
+  when: "{{ facts_template_directory is defined }}"
+  with_fileglob: "{{ facts_template_directory }}/*.j2"
+
+- name: Ensure facts are reloaded
+  meta: flush_handlers
+  when: facts_reload

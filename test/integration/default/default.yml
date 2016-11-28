@@ -1,0 +1,6 @@
+---
+- hosts: test-kitchen
+  vars:
+    facts_template_directory: "{{ playbook_dir }}/example_facts"
+  roles:
+    - mojcpp.facts
