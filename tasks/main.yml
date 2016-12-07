@@ -19,6 +19,8 @@
   notify: reload ansible_local facts
   when: "{{ facts_template_directory is defined }}"
   with_fileglob: "{% if facts_template_directory is defined %}{{ facts_template_directory ~ '/*.j2' }}{% else %}{{ omit }}{% endif %}"
+  tags:
+    - skip_ansible_lint
 
 - name: Ensure facts are reloaded
   meta: flush_handlers
